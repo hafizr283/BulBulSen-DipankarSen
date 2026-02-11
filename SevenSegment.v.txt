@@ -1,0 +1,3 @@
+module SevenSegment(
+    input clk,
+)
