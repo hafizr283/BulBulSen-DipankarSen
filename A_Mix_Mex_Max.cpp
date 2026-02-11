@@ -248,35 +248,31 @@ int binaryMon(int arr[], vector<pair<int, int>> &op_v, int max_val, int n)
 }
 void solve()
 {
-    int n, operation, max_val;
-    cin >> n >> operation >> max_val;
-    int arr[n];
-    input_array(arr);
-    vector<pair<int, int>> op_v;
-    for (int i = 0; i < operation; i++)
+    ll n;
+    cin >> n;
+    ll temp = n;
+    vector<ll> arr;
+    ll mark = 10;
+    for (int i = 0; i <= 10; i++)
     {
-        int x, y;
-        cin >> x >> y;
-        op_v.push_back({x, y});
+        arr.push_back(mark - 1);
+        mark *= 10;
     }
-    int last_crash = binaryMon(arr, op_v, max_val, n);
+    reverse(arr.begin(), arr.end());
 
-    if (last_crash == -1)
+    for (int i = 0; i <= 10; i++)
     {
-        print_array(arr);
-        cout << nl;
+        ll xx = (n / arr[i]);
+
+        if (xx > 0 and xx <= 9)
+            n -= xx * arr[i];
+
+        // cout << "xx" << xx << " " << n << " " << arr[i] << nl;
     }
+    if (n == 0)
+        cout << 10 << nl;
     else
-    {
-        for (int i = last_crash; i < op_v.size(); i++)
-        {
-            int x = op_v[i].first;
-            int y = op_v[i].second;
-            arr[x - 1] += y;
-        }
-        print_array(arr);
-        cout << nl;
-    }
+        cout << 0 << nl;
 }
 
 int main()
